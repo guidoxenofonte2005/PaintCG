@@ -355,6 +355,10 @@ void keyboard(unsigned char key, int x, int y) {
             deselecionar_todos();
             printf("Objetos deselecionados.\n");
             break;
+        case 'm':
+            if (poligonoSelecionado) eliminarConcavidades(poligonoSelecionado);
+            else printf("Impossível eliminar concavidades para a forma selecionada.");
+            break;
         case 127:
             deletar_objetos_selecionados();
             printf("Objetos selecionados foram deletados.\n");

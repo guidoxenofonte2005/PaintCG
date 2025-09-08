@@ -199,3 +199,44 @@ void cisalharPoligono(Poligono* poligono, float shx, float shy) {
         matriz_aplica_ponto(&poligono->vertices[i], &poligono->vertices[i], &M_final);
     }
 }
+
+float cross(Point a, Point b, Point c) {
+    return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+}
+
+void eliminarConcavidades(Poligono* poligono) {
+    int clockWise = areaPoligono(poligono);
+
+    int changed = 1;
+
+    while (changed) {
+        changed = 0;
+        for (int i=0; i<poligono->numVertices; i++) {
+            Point ant = poligono->vertices[(i-1+poligono->numVertices) % poligono->numVertices];
+            Point atual = poligono->vertices[i];
+            Point prox = poligono->vertices[(i+1) % poligono->numVertices];
+
+            float cr = cross(ant, atual, prox);
+
+            if ((clockWise == 1 && cr < 0) || (clockWise == -1 && cr > 0)) {
+                // vértice côncavo -> remover
+                for (int j=i; j<*n-1; j++)
+                    poligono->vertices[j] = poligono->vertices[j+1];
+                poligono->numVertices--;
+                changed = 1;
+                break; // reinicia varredura
+            }
+        }
+    }
+}
+
+int areaPoligono(Poligono* poligono) {
+    float area = 0;
+    for (int i = 0; i < poligono->numVertices; i++) {
+        int j = (i+1) % poligono->numVertices; // pega sempre o próximo vértice da lista
+        area += poligono->vertices[i].x * poligono->vertices[j].y - poligono->vertices[j].x * poligono->vertices[i].y
+    }
+    area = area / 2.0f;
+
+    return (area < 0) ? -1:1;
+}
