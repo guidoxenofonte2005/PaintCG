@@ -809,3 +809,95 @@
 	<intrin.h>
 	<arm_neon.h>
 
+1757338566 source:c:\users\guido\desktop\paintcg\src\animacao_pontos.c
+	"animacao_pontos.h"
+	"ui.h"
+	<stdlib.h>
+	<stdio.h>
+
+1757338566 c:\users\guido\desktop\paintcg\src\animacao_pontos.h
+	"gerenciador_objetos.h"
+
+1757338566 c:\users\guido\desktop\paintcg\src\gerenciador_objetos.h
+	"primitivas.h"
+
+1757339041 c:\users\guido\desktop\paintcg\src\primitivas.h
+	<stdlib.h>
+
+1757338566 c:\users\guido\desktop\paintcg\src\ui.h
+
+1757338566 source:c:\users\guido\desktop\paintcg\src\gerenciador_objetos.c
+	"gerenciador_objetos.h"
+	<stdio.h>
+
+1757338566 source:c:\users\guido\desktop\paintcg\src\matriz.c
+	"matriz.h"
+	<math.h>
+	<string.h>
+
+1757338566 c:\users\guido\desktop\paintcg\src\matriz.h
+	"primitivas.h"
+
+1757338566 source:c:\users\guido\desktop\paintcg\src\selecao.c
+	"selecao.h"
+	<stdio.h>
+
+1757338566 c:\users\guido\desktop\paintcg\src\selecao.h
+	"primitivas.h"
+
+1757338566 source:c:\users\guido\desktop\paintcg\src\tessellator.c
+	<GL/glut.h>
+	<GL/glu.h>
+	<stdio.h>
+	<stdlib.h>
+	"tessellator.h"
+
+1757338566 c:\users\guido\desktop\paintcg\src\tessellator.h
+	"primitivas.h"
+
+1757338566 source:c:\users\guido\desktop\paintcg\src\tinyfiledialogs.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<sys/stat.h>
+	<windows.h>
+	<commdlg.h>
+	<shlobj.h>
+	<conio.h>
+	<direct.h>
+	<limits.h>
+	<unistd.h>
+	<dirent.h>
+	<termios.h>
+	<sys/utsname.h>
+	<signal.h>
+	"tinyfiledialogs.h"
+
+1757338566 c:\users\guido\desktop\paintcg\src\tinyfiledialogs.h
+
+1757338566 source:c:\users\guido\desktop\paintcg\src\ui.c
+	<GL/gl.h>
+	<GL/glut.h>
+	<string.h>
+	"ui.h"
+	"animacao_pontos.h"
+	"stb_image.h"
+
+1757338566 c:\users\guido\desktop\paintcg\src\stb_image.h
+	"stb_image.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<assert.h>
+	<stdint.h>
+	<emmintrin.h>
+	<intrin.h>
+	<arm_neon.h>
+

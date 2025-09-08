@@ -41,4 +41,6 @@ void escalarPoligono(Poligono* poligono, float sx, float sy);
 void refletirPoligono(Poligono* poligono, int eixoX, int eixoY);
 void cisalharPoligono(Poligono* poligono, float shx, float shy);
 
+void eliminarConcavidades(Poligono* poligono);
+
 #endif
