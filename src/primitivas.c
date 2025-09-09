@@ -201,43 +201,41 @@ void cisalharPoligono(Poligono* poligono, float shx, float shy) {
     }
 }
 
-float cross(Ponto a, Ponto b, Ponto c) {
-    return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+float prodVetorial(Ponto a, Ponto b, Ponto c) {
+    return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x); // retorna o produto vetorial entre ab e ac
 }
 
-int areaPoligono(Poligono* poligono) {
+int areaPoligono(Poligono* poligono) { // usa a área para definir a orientação do polígono (sentido horário ou antihorário)
     float area = 0;
     for (int i = 0; i < poligono->numVertices; i++) {
-        int j = (i+1) % poligono->numVertices; // pega sempre o próximo vértice da lista
-        area += poligono->vertices[i].x * poligono->vertices[j].y - poligono->vertices[j].x * poligono->vertices[i].y;
+        int j = (i+1) % poligono->numVertices; // pega sempre o próximo vértice (volta para 0 se o atual for o último)
+        area += poligono->vertices[i].x * poligono->vertices[j].y - poligono->vertices[j].x * poligono->vertices[i].y; // calcula o determinante do ponto atual e do próximo ponto
     }
     area = area / 2.0f;
 
-    return (area < 0) ? -1:1;
+    return (area < 0) ? -1:1; // o sinal da área assinalada indica a orientação global, ou seja, se for menor que 0, é horário, e vice versa
 }
 
 void eliminarConcavidades(Poligono* poligono) {
     int clockWise = areaPoligono(poligono);
-    printf("%d", clockWise);
 
     int changed = 1;
 
-    while (changed) {
+    while (changed) { // enquanto ocorrerem mudanças dentro do polígono
         changed = 0;
-        for (int i=0; i<poligono->numVertices; i++) {
-            Ponto ant = poligono->vertices[(i-1+poligono->numVertices) % poligono->numVertices];
-            Ponto atual = poligono->vertices[i];
-            Ponto prox = poligono->vertices[(i+1) % poligono->numVertices];
+        for (int i=0; i<poligono->numVertices; i++) { // para todo vértice dentro do polígono, fazer as operações abaixo
+            Ponto ant = poligono->vertices[(i-1 + poligono->numVertices) % poligono->numVertices]; // pega o vértice anterior
+            Ponto atual = poligono->vertices[i]; // pega o vértice atual
+            Ponto prox = poligono->vertices[(i+1) % poligono->numVertices]; // pega o próximo vértice
 
-            float cr = cross(ant, atual, prox);
+            float prodVet = prodVetorial(ant, atual, prox); // pega o produto vetorial entre as arestas AntAtual e AntProx
 
-            if ((clockWise == 1 && cr < 0) || (clockWise == -1 && cr > 0)) {
-                // vértice côncavo -> remover
+            if ((clockWise == 1 && prodVet < 0) || (clockWise == -1 && prodVet > 0)) { // se o sentido do polígono e
                 for (int j=i; j<poligono->numVertices-1; j++)
-                    poligono->vertices[j] = poligono->vertices[j+1];
-                poligono->numVertices--;
-                changed = 1;
-                break; // reinicia varredura
+                    poligono->vertices[j] = poligono->vertices[j+1]; // para cada vértice a partir do detectado, ajustar sua posição no array
+                poligono->numVertices--; // diminui em 1 a quantidade de vértices
+                changed = 1; // detecta a mudança
+                break;
             }
         }
     }
