@@ -230,7 +230,7 @@ void eliminarConcavidades(Poligono* poligono) {
 
             float prodVet = prodVetorial(ant, atual, prox); // pega o produto vetorial entre as arestas AntAtual e AntProx
 
-            if ((clockWise == 1 && prodVet < 0) || (clockWise == -1 && prodVet > 0)) { // se o sentido do polígono e
+            if ((clockWise == 1 && prodVet < 0) || (clockWise == -1 && prodVet > 0)) {
                 for (int j=i; j<poligono->numVertices-1; j++)
                     poligono->vertices[j] = poligono->vertices[j+1]; // para cada vértice a partir do detectado, ajustar sua posição no array
                 poligono->numVertices--; // diminui em 1 a quantidade de vértices
